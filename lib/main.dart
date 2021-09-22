@@ -182,8 +182,8 @@ Widget _buildWideContainers(context) {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 130, top: 20),
-                      child: Image.asset(
-                        'images/nike.png',
+                      child: Image.network(
+                        'assets/assets/images/nike.png',
                         width: 200,
                       ),
                     ),
@@ -268,7 +268,7 @@ Widget _buildWideContainers(context) {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/nike_bg.png'),
+                image: AssetImage('assets/images/nike_bg.png'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken),
               ),
