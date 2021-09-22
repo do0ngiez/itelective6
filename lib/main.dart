@@ -248,15 +248,15 @@ Widget _buildWideContainers(context) {
                         margin: EdgeInsets.only(left: 140, top: 15),
                         child: Row(children: [
                           Image.asset(
-                            'images/fb.png',
+                            'assets/images/fb.png',
                             width: 37,
                           ),
                           Image.asset(
-                            'images/twitter.png',
+                            'assets/images/twitter.png',
                             width: 26,
                           ),
                           Image.asset(
-                            'images/linkedin.png',
+                            'assets/images/linkedin.png',
                             width: 50,
                           ),
                         ])),
