@@ -51,8 +51,8 @@ Widget _buildNormalContainer(context) {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 130, top: 20),
-                      child: Image.asset(
-                        'images/nike.png',
+                      child: Image.network(
+                        'assets/assets/images/nike.png',
                         width: 200,
                       ),
                     ),
