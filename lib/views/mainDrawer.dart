@@ -1,6 +1,8 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:itelective6/services/firebase_authentication.dart';
+import 'package:itelective6/views/signin/login_ui.dart';
+import 'package:itelective6/views/admin/createitem.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({ Key? key }) : super(key: key);
@@ -24,40 +26,40 @@ class MainDrawer extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                          image: AssetImage('assets/images/user.jpg'),
+                          image: NetworkImage(Firebase_Authentication().getCurrentUser(context).photoUrl),
                           fit: BoxFit.fill
                         ),
                       ),
                     ),
                     Text(
-                      'Choi Yena', 
+                      Firebase_Authentication().getCurrentUser(context).displayName,
                       style: TextStyle(
                       fontSize: 22,
                       color: Colors.white,
                       ),
                     ),
                     Text(
-                      'choiyena99@gmail.com', 
+                      Firebase_Authentication().getCurrentUser(context).email,
                       style: TextStyle(
                       // fontSize: 22,
                       color: Colors.white,
                       ),
                     ),
-                    Text(
-                      '+63 911 922 9992', 
-                      style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white,
-                      ),
-                    ),
+                    // Text(
+                    //   '+63 911 922 9992', 
+                    //   style: TextStyle(
+                    //   fontSize: 12,
+                    //   color: Colors.white,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
             ),
             ListTile(
-              leading: Icon(Icons.person),
+              leading: FaIcon(FontAwesomeIcons.solidUser),
               title: Text(
-                'Your Profile', 
+                'Profile', 
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -67,9 +69,58 @@ class MainDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings),
+              leading: FaIcon(FontAwesomeIcons.shoppingBag),
               title: Text(
-                'Settings', 
+                'Orders', 
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+             onTap: (){
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: FaIcon(FontAwesomeIcons.solidHeart),
+              title: Text(
+                'Favorites', 
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+             onTap: (){
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: FaIcon(FontAwesomeIcons.inbox),
+              title: Text(
+                'Inbox', 
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+             onTap: (){
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: FaIcon(FontAwesomeIcons.pen),
+              title: Text(
+                'Register an Item', 
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+             onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CreateItem()));
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: FaIcon(FontAwesomeIcons.userCog),
+              title: Text(
+                'Account Settings', 
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -79,15 +130,23 @@ class MainDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.arrow_back),
+              leading: FaIcon(FontAwesomeIcons.signOutAlt, color: Colors.red,),
               title: Text(
-                'Logout', 
+                'Sign out', 
                 style: TextStyle(
                   fontSize: 18,
+                  color: Colors.red,
                 ),
               ),
-              onTap: (){
-                Navigator.pop(context);
+              onTap: () async {
+                // Navigator.pop(context);
+                Firebase_Authentication().logOut(context).whenComplete(() {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                      builder: (dcontext) => const LoginView()
+                    ), (route) => false
+                  );
+                });
               },
             ),
           ],

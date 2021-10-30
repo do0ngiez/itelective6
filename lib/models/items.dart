@@ -1,17 +1,17 @@
 class Item {
     String id;
-    String shortdesc;
+    String name;
     String description;
-    double price;
-    String imageLocation;
+    String price;
+    String photoUrl;
 
     Item(
         {
             required this.id,
-            required this.shortdesc,
+            required this.name,
             required this.description,
             required this.price,
-            required this.imageLocation
+            required this.photoUrl
         }
     );
 }
