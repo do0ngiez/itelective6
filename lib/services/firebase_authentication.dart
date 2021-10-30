@@ -78,6 +78,7 @@ class Firebase_Authentication {
 
       return loginUser;
     } catch (e) {
+      print(e);
       return null;
     }
   }
